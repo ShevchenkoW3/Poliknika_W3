@@ -1,6 +1,6 @@
 <?php
 include 'template/head.php';
-//include 'template/database.php';
+include 'template/database.php';
 include 'template/nav.php';
 ?>
 
