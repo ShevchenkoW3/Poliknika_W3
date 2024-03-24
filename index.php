@@ -4,7 +4,7 @@ include 'template/database.php';
 session_start();
 if (!empty($_SESSION)){
     if($_SESSION['role'] == 'Регистратор'){
-        include 'template/nav_registrator.php';
+        include 'template/nav_regisrtator.php';
     }
     elseif(($_SESSION['role'] == 'Врач')){
         include 'template/nav_doctor.php';
