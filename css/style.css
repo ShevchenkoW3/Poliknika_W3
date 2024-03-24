@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+*{
+  box-sizing: border-box;
+}
+header, nav, section, .card, footer{display: block;};
+.copyright{
+  text-align: start;
+}
+.contacts{
+  text-align: end;
+}
+.social{
+  justify-content: center;
+}
+table,td{
+  border: 1px solid #000;
+}
+table{
+  width: 100%;
+
+}
+td{
+  width: 40%;
+  padding:10px;
+  font-size: 20px;
+}
+
+
