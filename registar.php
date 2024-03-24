@@ -2,7 +2,7 @@
 include 'template/head.php';
 //session_start();
 include 'template/database.php';
-include 'template/nav1.php';
+include 'template/nav_regisrtator.php';
 ?> 
   <?php
     if (!empty($_POST)) 
@@ -39,7 +39,7 @@ header('location:index.php');
 <INPUT type="submit" value="Получить талон" style='width: 200px; height: 30px; margin-left: 20px ; border-color:black ;  border-radius: 5px;margin:5px;font-family:  Gothic Medium ;font-size: 20px; color:black; background-color:white; align-items: center;'  >
 </div>
 </form> 
-<form action='registration.php'method='POST'>
+<form action='registr.php'method='POST'>
 <div class="form-element">
 <INPUT type="submit" value="Зарегистрировать" style='width: 200px; height: 30px; margin-left: 20px ; border-color:black ;  border-radius: 5px;margin:5px;font-family:  Gothic Medium ;font-size: 20px; color:black; background-color:white; align-items: center;'  >
 </div>
