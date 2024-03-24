@@ -1,7 +1,23 @@
 <?php
 include 'template/head.php';
 include 'template/database.php';
-include 'template/nav.php';
+session_start();
+if (!empty($_SESSION)){
+    if($_SESSION['role'] == 'Регистратор'){
+        include 'template/nav_registrator.php';
+    }
+    elseif(($_SESSION['role'] == 'Врач')){
+        include 'template/nav_doctor.php';
+    }
+	elseif(($_SESSION['role'] == 'Главный врач')){
+        include 'template/nav_head_doctor.php';
+    }
+}
+else{
+    include 'template/nav.php';
+}
+
+include 'template/database.php';
 ?>
 
 <div class="zag"style="text-align:center;padding-top:30px;">

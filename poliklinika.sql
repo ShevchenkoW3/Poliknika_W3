@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 19 2024 г., 20:37
+-- Время создания: Мар 24 2024 г., 12:54
 -- Версия сервера: 5.7.39
 -- Версия PHP: 8.0.22
 
@@ -31,8 +31,15 @@ CREATE TABLE `ambulaturnie_karti` (
   `id_karta` int(11) NOT NULL,
   ` id_pacient` int(11) NOT NULL,
   `number` int(11) NOT NULL,
-  `date_created` date NOT NULL
+  `date_created` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `ambulaturnie_karti`
+--
+
+INSERT INTO `ambulaturnie_karti` (`id_karta`, ` id_pacient`, `number`, `date_created`) VALUES
+(1, 1, 1, '21.03.2024');
 
 -- --------------------------------------------------------
 
@@ -110,6 +117,7 @@ CREATE TABLE `otcheti` (
 
 CREATE TABLE `pacienti` (
   `id_pacient` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `fio` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_of_birth` date NOT NULL,
   `gender` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -117,9 +125,43 @@ CREATE TABLE `pacienti` (
   `policy_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `disability_group` int(11) NOT NULL,
+  `disability_group` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contraindications` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `pacienti`
+--
+
+INSERT INTO `pacienti` (`id_pacient`, `id_user`, `fio`, `date_of_birth`, `gender`, `passport_number`, `policy_number`, `address`, `phone_number`, `disability_group`, `contraindications`) VALUES
+(1, 2, 'Клиент Клиент', '2013-02-20', 'Мужчина', '7023678236', '125125', 'Москва', '+7012352423', 'Отсутвует', 'Отсутвуют'),
+(2, 1, 'Иванов Иван Иваныч', '1995-02-13', 'М', '03 01 518076', '346218', 'Москва  Ул.Петрова 13', '+79034567731', 'Нет', 'Нет');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `personal`
+--
+
+CREATE TABLE `personal` (
+  `id_personal` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `otdelenia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fio` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `personal`
+--
+
+INSERT INTO `personal` (`id_personal`, `id_user`, `otdelenia`, `fio`, `position`) VALUES
+(1, 12, 'Терапевтическое', '123123123', ''),
+(2, 17, 'Неврологическое отделение', 'nevrolog', 'Врач-невролог'),
+(3, 17, 'Неврологическое отделение', 'nevrolog', 'Врач-невролог'),
+(4, 17, 'Неврологическое отделение', 'nevrolog', 'Врач-невролог'),
+(5, 17, 'Неврологическое отделение', 'nevrolog', 'Врач-невролог'),
+(6, 22, 'Терапевтическое', 'Super Doctor One', 'Врач-терапевт');
 
 -- --------------------------------------------------------
 
@@ -138,18 +180,26 @@ CREATE TABLE `raspinie_vrachei` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `Taloni`
+-- Структура таблицы `taloni`
 --
 
-CREATE TABLE `Taloni` (
+CREATE TABLE `taloni` (
   `id_talon` int(11) NOT NULL,
   `id_pacient` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_personal` int(11) NOT NULL,
   `specialty` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_of_appointment` date NOT NULL,
-  `time_of_appointment` time NOT NULL,
+  `date_of_appointment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time_of_appointment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `medical_card_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `taloni`
+--
+
+INSERT INTO `taloni` (`id_talon`, `id_pacient`, `id_personal`, `specialty`, `date_of_appointment`, `time_of_appointment`, `medical_card_number`) VALUES
+(1, 1, 6, 'направление к неврологу', '13.04.2024', '15:00', 1),
+(2, 2, 6, 'Врач-терапевт', '23.03.2024', '15:00', 2);
 
 -- --------------------------------------------------------
 
@@ -170,10 +220,16 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `login`, `password`, `role`) VALUES
 (1, 'registrator', 'registrator', 'Регистратор'),
-(2, 'doctor', 'doctor', 'Врач'),
+(2, 'client', 'client', 'Пациент'),
 (3, 'head_doctor', 'head_doctor', 'Главный врач'),
-(4, 'andrew', 'andrew', 'Регистратор'),
-(5, 'andrew', 'andrew', 'Регистратор');
+(12, 'doc', '123', 'Врач'),
+(17, 'nev', 'nev', 'Врач'),
+(18, 'nev', 'nev', 'Врач'),
+(19, 'nev', 'nev', 'Врач'),
+(20, 'nev', 'nev', 'Врач'),
+(21, 'nev', 'nev', 'Врач'),
+(22, 'super', 'super', 'Врач'),
+(23, 'andrew', 'andrew', 'Врач');
 
 -- --------------------------------------------------------
 
@@ -184,14 +240,22 @@ INSERT INTO `users` (`id_user`, `login`, `password`, `role`) VALUES
 CREATE TABLE `zapisi_na_priem` (
   `id_priem` int(11) NOT NULL,
   `id_pacient` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `date_of_appointment` date NOT NULL,
-  `time_of_appointment` time NOT NULL,
+  `id_personal` int(11) NOT NULL,
+  `id_talon` int(11) NOT NULL,
+  `date_of_appointment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time_of_appointment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `complaint` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `diagnosis` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `prescriptions` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sick_leave` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `zapisi_na_priem`
+--
+
+INSERT INTO `zapisi_na_priem` (`id_priem`, `id_pacient`, `id_personal`, `id_talon`, `date_of_appointment`, `time_of_appointment`, `complaint`, `diagnosis`, `prescriptions`, `sick_leave`) VALUES
+(1, 1, 6, 2, '23.03.2024', '15:00', 'Болит голова jhdfgjdfhgdfgkldfhgldhfklgjdfgdfdfg', 'Мигрень sdfgsdfgdfgdfgdfg', 'Чай с малиной', 'Отсутствует');
 
 --
 -- Индексы сохранённых таблиц
@@ -243,6 +307,13 @@ ALTER TABLE `pacienti`
   ADD PRIMARY KEY (`id_pacient`);
 
 --
+-- Индексы таблицы `personal`
+--
+ALTER TABLE `personal`
+  ADD PRIMARY KEY (`id_personal`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Индексы таблицы `raspinie_vrachei`
 --
 ALTER TABLE `raspinie_vrachei`
@@ -250,12 +321,10 @@ ALTER TABLE `raspinie_vrachei`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Индексы таблицы `Taloni`
+-- Индексы таблицы `taloni`
 --
-ALTER TABLE `Taloni`
-  ADD PRIMARY KEY (`id_talon`),
-  ADD KEY `id_pacient` (`id_pacient`),
-  ADD KEY `id_user` (`id_user`);
+ALTER TABLE `taloni`
+  ADD PRIMARY KEY (`id_talon`);
 
 --
 -- Индексы таблицы `users`
@@ -269,7 +338,8 @@ ALTER TABLE `users`
 ALTER TABLE `zapisi_na_priem`
   ADD PRIMARY KEY (`id_priem`),
   ADD KEY `id_pacient` (`id_pacient`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_talon` (`id_talon`),
+  ADD KEY `id_personal` (`id_personal`) USING BTREE;
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -279,7 +349,7 @@ ALTER TABLE `zapisi_na_priem`
 -- AUTO_INCREMENT для таблицы `ambulaturnie_karti`
 --
 ALTER TABLE `ambulaturnie_karti`
-  MODIFY `id_karta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_karta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `bolinichnie_listi`
@@ -315,7 +385,13 @@ ALTER TABLE `otcheti`
 -- AUTO_INCREMENT для таблицы `pacienti`
 --
 ALTER TABLE `pacienti`
-  MODIFY `id_pacient` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pacient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `personal`
+--
+ALTER TABLE `personal`
+  MODIFY `id_personal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `raspinie_vrachei`
@@ -324,22 +400,22 @@ ALTER TABLE `raspinie_vrachei`
   MODIFY `id_raspisanie` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `Taloni`
+-- AUTO_INCREMENT для таблицы `taloni`
 --
-ALTER TABLE `Taloni`
-  MODIFY `id_talon` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `taloni`
+  MODIFY `id_talon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT для таблицы `zapisi_na_priem`
 --
 ALTER TABLE `zapisi_na_priem`
-  MODIFY `id_priem` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_priem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -364,24 +440,24 @@ ALTER TABLE `ligotnie_recepti`
   ADD CONSTRAINT `ligotnie_recepti_ibfk_1` FOREIGN KEY (`id_pacient`) REFERENCES `pacienti` (`id_pacient`);
 
 --
+-- Ограничения внешнего ключа таблицы `personal`
+--
+ALTER TABLE `personal`
+  ADD CONSTRAINT `personal_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+
+--
 -- Ограничения внешнего ключа таблицы `raspinie_vrachei`
 --
 ALTER TABLE `raspinie_vrachei`
   ADD CONSTRAINT `raspinie_vrachei_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
--- Ограничения внешнего ключа таблицы `Taloni`
---
-ALTER TABLE `Taloni`
-  ADD CONSTRAINT `taloni_ibfk_1` FOREIGN KEY (`id_pacient`) REFERENCES `pacienti` (`id_pacient`),
-  ADD CONSTRAINT `taloni_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
---
 -- Ограничения внешнего ключа таблицы `zapisi_na_priem`
 --
 ALTER TABLE `zapisi_na_priem`
   ADD CONSTRAINT `zapisi_na_priem_ibfk_1` FOREIGN KEY (`id_pacient`) REFERENCES `pacienti` (`id_pacient`),
-  ADD CONSTRAINT `zapisi_na_priem_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+  ADD CONSTRAINT `zapisi_na_priem_ibfk_2` FOREIGN KEY (`id_personal`) REFERENCES `personal` (`id_personal`),
+  ADD CONSTRAINT `zapisi_na_priem_ibfk_3` FOREIGN KEY (`id_talon`) REFERENCES `taloni` (`id_talon`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
