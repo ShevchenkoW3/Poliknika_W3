@@ -1,0 +1,132 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+*{
+  box-sizing: border-box;
+}
+/* body{width: 1200px;height: 2000px; background-color:#fdf6e6;} */
+header, nav, section, .card, footer{display: block;};
+
+
+/* header{width: 960px;height: 20px;} */
+
+
+/* .logo{
+  display: flex;
+  align-items: center;
+  font-family: Arial;
+  font-size: 20px;
+  color: #DA2128;
+} */
+
+/* .logo img {
+  padding-left: 0%;
+  padding-top: 10px;
+}
+
+.logo span{
+  padding-left: 20px;
+}
+
+
+.logo{padding-left: 0%;
+  padding-top: 10px;
+  font-family: Arial;
+  font-size: 20px;
+  color: #DA2128;
+} */
+/* .container{width: 1200px;} */
+.row{width: 1200px; ; background-color:white;color: #DA2128;}
+.col-md-8{color: #DA2128;}
+.col-md-5{padding-bottom: 25px;padding-top: 20px }
+button{width: 101px; border:none ;  border-radius: 7px;margin-right:200px; padding-bottom: 3px;    font-family:  Gothic Medium ;font-size: medium; color: aliceblue; background-color:rgb(16, 88, 243)}
+.img-header{flex-direction: row }
+.submit1{ border:none; color: white;height: auto; margin-right: 40px}
+
+h4{color: #DA2128;}
+
+h5{color: #DA2128;}
+
+
+.container {font-family: Arial; display: flex;flex-direction: row; margin: 0px;
+ }
+
+
+ .navbar {width: 2000px; display: flex; height: auto; flex-direction: column;margin-right: 0px;}
+ nav ul {list-style-type: none;
+     width: 1200px;
+     text-align: left;font: 1em sans-serif;font-size: 10px; line-height: 5px; word-spacing: 15px;
+ }
+ li {display: inline;
+    justify-content: flex-start; color: rgb(68, 26, 147);
+     background-color: rgb(71, 60, 229)}
+     .col-md-6{width: auto; height: 200px; background-color: white; margin-left:  10%; margin-top: 10px;}
+     .zag{  padding-left: 47px; color: #DA2128; font-family: Arial;  }
+         .col-md-8{width: 800px!important;  background-color:white !important;color: #DA2128;}
+       
+   h4{padding-left:100px ; padding-top:30px ; margin-top: 12px; color: #DA2128;}
+   .aside1{    
+    width: 500px; 
+    background-color: white(245, 238, 238, 0.822)}
+    .col-sm-4{display: flex;flex-direction: row;justify-content: space-between;font-family: Arial; font-size: medium ;
+     color: rgb(214, 25, 25) ;}
+   .article1{justify-self: flex-end;   padding-left:130px ;  
+   width: 500px; font-family: Arial; font-size: medium ;
+   color: rgb(214, 25, 25) ;
+   background-color: white(245, 238, 238, 0.)}
+   main{flex-direction: row;justify-content: space-between;align-items:center;background-color:rgb(251, 252, 253) (250, 248, 248); color: rgb(228, 30, 30); width: 1200px;height:250px }
+   .col-sm-5{display: flex;flex-direction: row;justify-content: space-between;font-family: Arial; font-size: medium ;
+    color: rgb(214, 25, 25) ;}
+.img-main{width: 700px; height: 360px; margin-top: 150px; margin-left: 50px; }
+h2{margin-left: 450px;align-items: center;}
+.form-element{display: flex;flex-direction: column; width: 200px; margin-left: 500px;}
+  h5{padding-right:50px; color: #DA2128;}
+.article{margin-top: 10px;  
+width: 500px; font-family: Arial; font-size: medium ;
+color: rgb(214, 25, 25) ;
+background-color: white(245, 238, 238, 0.)}
+.submit1{margin-left: 400px;}
+.card
+ .article2{width: 1200px !important; float: right; padding-left: 35px; font-family: Arial; font-size: medium ;
+  color: rgb(214, 25, 25) ;
+ background-color: white(245, 238, 238, 0.822)}
+.card  {  width: 1200px  !important; flex-direction: row; height: 250px; background-color: white(245, 238, 238, 0.822); color: #DA2128;padding-bottom:20px}
+.text {text-align: left; margin-left: 50px; font-family: Arial; font-size: medium ;  margin: 30px;
+  color: rgb(214, 25, 25) ;}
+
+.img-card{ padding-bottom:300px ;width: 300px;height: 200px;padding-top:5px; float:right }
+ 
+
+/* footer{
+width: 100%;
+margin-right: 50px;
+background-color:rgb(71, 60, 229);
+color: rgb(214, 25, 25);
+} */
+/* .header{ 
+  text-align: center
+} */
+.copyright{
+  text-align: start;
+}
+.contacts{
+  text-align: end;
+}
+.social{
+  justify-content: center;
+}
+table,td{
+  border: 1px solid #000;
+}
+table{
+  width: 100%;
+
+}
+td{
+  width: 40%;
+  padding:10px;
+  font-size: 20px;
+}
+
+
