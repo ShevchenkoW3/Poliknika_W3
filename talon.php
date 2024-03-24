@@ -6,29 +6,30 @@ include 'template/nav1.php';
 ?> 
   <?php
  
-    if (!empty($_POST)) 
+if (!empty($_POST)) {
 
-//В переменные запишем данные, полученные с формы
+  //В переменные запишем данные, полученные с формы
 
-$fio=$_POST['fio'];
+  $fio=$_POST['fio'];
 
 
-$sql="SELECT  FROM `patient` WHERE `fio`='$fio'";
-$result=$mysqli->query($sql);
+  $sql="SELECT * FROM `patient` WHERE `fio`='$fio'";
+  $result=$mysqli->query($sql);
 
-if($result->$fio==$fio) {
-echo"Получите талон";
- 
- 
-}
-else if ($result->$fio!=0){
- 
- echo "Пожалуйста, зарегистрируйтесь";
-   
-    }
+  // Проверка наличия результатов
+  if ($result->num_rows > 0) {
+    // Извлечение первой строки
+    $first_row = $result->fetch_assoc();
     
+    // Использование данных первой строки
+    //print_r($first_row);
+    echo "<h1>Получите талон</h1>";
+  } else {
+    echo "<h1>Пожалуйста зарегистрируйтесь</h1>";
+  }
+} 
     ?>
-                    <form action='talon.php'method='POST'>
+                    <form action='talon.php'method='POST'style="text-align:center">
     <div class="form-element">
     <label style="color:blue">Введите фамилию имя отчество</label><br>
 <input type="text" name="fio" var="" required /> 
