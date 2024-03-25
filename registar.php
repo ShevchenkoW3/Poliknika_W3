@@ -28,7 +28,7 @@ header('location:index.php');
 ?>
 
   <div class="zag"style="text-align:center;padding-top:30px;">
-  <h1 style="color:blue"> Страница регистратора </h1><br>
+  <h1> Страница регистратора </h1><br>
                 
                 
  
@@ -36,12 +36,12 @@ header('location:index.php');
 
   <form action='talon.php'method='POST'>
 <div class="form-element">
-<INPUT type="submit" value="Получить талон" style='width: 200px; height: 30px; margin-left: 20px ; border-color:black ;  border-radius: 5px;margin:5px;font-family:  Gothic Medium ;font-size: 20px; color:black; background-color:white; align-items: center;'  >
+<INPUT type="submit" class="btn btn-primary" value="Получить талон" style='align-items: center;'><br><br>
 </div>
 </form> 
 <form action='registr.php'method='POST'>
 <div class="form-element">
-<INPUT type="submit" value="Зарегистрировать" style='width: 200px; height: 30px; margin-left: 20px ; border-color:black ;  border-radius: 5px;margin:5px;font-family:  Gothic Medium ;font-size: 20px; color:black; background-color:white; align-items: center;'  >
+<INPUT type="submit" class="btn btn-primary" value="Зарегистрировать" style='align-items: center;'><br><br>
 </div>
 </form> 
            </div>
