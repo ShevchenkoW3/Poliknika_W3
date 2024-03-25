@@ -37,9 +37,9 @@ if (!empty($_POST['password']) and !empty($_POST['login'])) {
         <div class="row">
             <div class="col">
                 <form action="" method="post"><br>
-                    <input type="text" placeholder="Логин" name="login"><br>
-                    <input type="password" placeholder="Пароль" name="password"><br>
-                    <button type="submit">Войти</button>
+                    <input type="text" class="form-control" placeholder="Логин" name="login"><br><br>
+                    <input type="password" class="form-control" placeholder="Пароль" name="password"><br><br>
+                    <input type="submit" class="btn btn-primary" value="Войти"><br><br>
                 </form>
             </div>
         </div>

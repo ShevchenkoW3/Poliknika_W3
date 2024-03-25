@@ -12,11 +12,13 @@ if (!empty($_SESSION)){
 	elseif(($_SESSION['role'] == 'Главный врач')){
         include 'template/nav_head_doctor.php';
     }
-}
+	elseif(($_SESSION['role'] == 'Пациент')){
+        include 'template/nav_client.php';
+    }
 else{
     include 'template/nav.php';
 }
-
+}
 include 'template/database.php';
 ?>
 <?php
